@@ -1,0 +1,40 @@
+name: Update Casks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@v4
+
+      - name: Update casks from GitHub releases
+        run: ruby scripts/update_casks.rb
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Validate cask syntax
+        run: |
+          ruby -c Casks/langswitcher.rb
+          ruby -c Casks/unblock-pro.rb
+
+      - name: Commit and push changes
+        run: |
+          if git diff --quiet -- Casks; then
+            echo "No cask updates."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Casks/*.rb
+          git commit -m "Update casks"
+          git push
