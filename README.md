@@ -6,4 +6,5 @@ Unofficial tap
 
 ```bash
 brew tap libesto/tap
+brew trust libesto/tap
 ```
