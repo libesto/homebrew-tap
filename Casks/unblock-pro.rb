@@ -1,9 +1,9 @@
 cask "unblock-pro" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.0.28"
-  sha256 arm:   "dce24045b3ce5ac594d7df2767504b41f31c69afb3cb7d9cd9d73c885831be2a",
-         intel: "1a5f1ab47ab405447a45963fe15ae6940d370d4172ce798233396958a1c15947"
+  version "2.0.29"
+  sha256 arm:   "33610b7665ac7ec0ea4d5ce3a44acc26b23653c5f333f10511c4b5c4375604cd",
+         intel: "bd41056108d863a81a86af85206d83d3cce2ed401ff26be1553eb5bcdadd47c0"
 
   url "https://github.com/by-sonic/unblock-pro/releases/download/v#{version}/UnblockPro-#{version}-mac-#{arch}.zip",
       verified: "github.com/by-sonic/unblock-pro/"
